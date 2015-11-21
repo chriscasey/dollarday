@@ -1,0 +1,12 @@
+{% load bootstrap3 %}
+
+{% if latest_race_list %}
+    <ul>
+    {% for race in latest_race_list %}
+        <!-- <li><a href="/race/{{ race.id }}/">{{ race.date }}</a></li> -->
+        <li><a href="{% url 'detail' race.id %}">{{ race.date }}</a></li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>No races are available.</p>
+{% endif %}

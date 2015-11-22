@@ -1,10 +1,10 @@
 {% load bootstrap3 %}
 
-{% if latest_race_list %}
+{% if latest_raceday_list %}
+    <h2>Available dates</h2>
     <ul>
-    {% for race in latest_race_list %}
-        <!-- <li><a href="/race/{{ race.id }}/">{{ race.date }}</a></li> -->
-        <li><a href="{% url 'detail' race.id %}">{{ race.date }}</a></li>
+    {% for raceday in latest_raceday_list %}
+        <li><a href="{% url 'races_list' raceday.id %}">{{ raceday }}</a></li>
     {% endfor %}
     </ul>
 {% else %}

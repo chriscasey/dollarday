@@ -11,15 +11,26 @@ class Migration(migrations.Migration):
 
     operations = [
         migrations.CreateModel(
+            name='BSF',
+            fields=[
+                ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
+                ('value', models.FloatField(default=-1)),
+            ],
+        ),
+        migrations.CreateModel(
             name='Entry',
             fields=[
                 ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
+                ('entry_num', models.IntegerField(default=0)),
                 ('score', models.IntegerField(default=0)),
                 ('highest_bsf', models.IntegerField(default=0)),
                 ('avg_earnings', models.FloatField(default=0)),
-                ('avg_speed', models.IntegerField(default=0)),
+                ('avg_speed', models.FloatField(default=-1)),
                 ('lifetime_win_perc', models.FloatField(default=0)),
             ],
+            options={
+                'ordering': ['entry_num'],
+            },
         ),
         migrations.CreateModel(
             name='Horse',
@@ -32,9 +43,20 @@ class Migration(migrations.Migration):
             name='Race',
             fields=[
                 ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
-                ('date', models.DateField(verbose_name=b'date')),
                 ('race_number', models.IntegerField(default=0)),
             ],
+        ),
+        migrations.CreateModel(
+            name='Raceday',
+            fields=[
+                ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
+                ('date', models.DateField()),
+            ],
+        ),
+        migrations.AddField(
+            model_name='race',
+            name='day',
+            field=models.ForeignKey(to='dd_app.Raceday'),
         ),
         migrations.AddField(
             model_name='entry',
@@ -45,5 +67,10 @@ class Migration(migrations.Migration):
             model_name='entry',
             name='race',
             field=models.ForeignKey(to='dd_app.Race'),
+        ),
+        migrations.AddField(
+            model_name='bsf',
+            name='entry',
+            field=models.ForeignKey(to='dd_app.Entry'),
         ),
     ]

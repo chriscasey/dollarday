@@ -1,10 +1,14 @@
 {% load bootstrap3 %}
 
-<h1>Race {{race.race_number}} - {{race.date}}</h1
+<h3>{{race.day}}</h3>
+<hr>
+<h1>Race {{race.race_number}}</h1>
+
+
 <ul>
-{% for entry in race.entry_set.all %}
+{% for entry in scores %}
     <li>
-    {{ entry.entry_num }} {{ entry.horse.name }}
+    {{ entry }}
     </li>
 {% endfor %}
 </ul>

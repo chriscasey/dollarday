@@ -17,7 +17,6 @@ def race_detail(request, race_id):
 	race = get_object_or_404(Race, pk=race_id)
 	entries = get_list_or_404(Entry, race=race_id)
 	scores = calculate_scores(entries)
-	print scores
 	return render(request, 'dd_app/detail.html', 
 		{'race': race, 'scores': scores})	
 

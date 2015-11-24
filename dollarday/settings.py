@@ -39,7 +39,8 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     'dd_app',
     'bootstrap3',
-    'nested_inline'
+    'nested_inline',
+    'bootstrap_toolkit',
 )
 
 MIDDLEWARE_CLASSES = (

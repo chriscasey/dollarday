@@ -1,13 +1,14 @@
-{% load bootstrap3 %}
+{% extends 'dd_app/base.html' %}
 
-
-{% if races_list %}
-    <h2>Races</h2>
-    <ul>
-    {% for race in races_list %}
-    	<li><a href="{% url 'detail' race.id %}">{{race.race_number}}</a></li>
-    {% endfor %}
-    </ul>
-{% else %}
-    <p>No races are available.</p>
-{% endif %}
+{% block content %}
+	{% if races_list %}
+	    <h2>Races</h2>
+	    <ul>
+	    {% for race in races_list %}
+	    	<li><a href="{% url 'detail' race.id %}">{{race.race_number}}</a></li>
+	    {% endfor %}
+	    </ul>
+	{% else %}
+	    <p>No races are available.</p>
+	{% endif %}
+{% endblock %}

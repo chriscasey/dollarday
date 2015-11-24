@@ -1,12 +1,15 @@
+{% extends 'dd_app/base.html' %}
 
+{% block content %}
+	{% if latest_raceday_list %}
+	    <h2>Available dates</h2>
+	    <ul>
+	    {% for raceday in latest_raceday_list %}
+	        <li><a href="{% url 'races_list' raceday.id %}">{{ raceday }}</a></li>
+	    {% endfor %}
+	    </ul>
+	{% else %}
+	    <p>No races are available.</p>
+	{% endif %}
 
-{% if latest_raceday_list %}
-    <h2>Available dates</h2>
-    <ul>
-    {% for raceday in latest_raceday_list %}
-        <li><a href="{% url 'races_list' raceday.id %}">{{ raceday }}</a></li>
-    {% endfor %}
-    </ul>
-{% else %}
-    <p>No races are available.</p>
-{% endif %}
+{% endblock %}

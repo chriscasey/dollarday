@@ -40,7 +40,6 @@ INSTALLED_APPS = (
     'dd_app',
     'bootstrap3',
     'nested_inline',
-    'bootstrap_toolkit',
 )
 
 MIDDLEWARE_CLASSES = (

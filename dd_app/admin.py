@@ -9,6 +9,7 @@ class BSFInline(admin.TabularInline):
 
 class EntryInline(admin.TabularInline):
 	model = Entry
+	fields = ['race', 'entry_num', 'horse', 'highest_bsf', 'avg_earnings', 'lifetime_win_perc']	
 	extra = 0
 
 class EntryAdmin(admin.ModelAdmin):

@@ -45,6 +45,7 @@ INSTALLED_APPS = (
     'dd_app',
     'bootstrap3',
     'nested_inline',
+    'django_tables2',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -71,6 +72,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'django.core.context_processors.request',
             ],
         },
     },

@@ -1,6 +1,8 @@
 from django.shortcuts import get_object_or_404, get_list_or_404, render
+from django_tables2   import RequestConfig
 
-from .models import Raceday, Race, Entry
+
+from .models import Raceday, Race, Entry, EntryTable
 from analyzer import calculate_scores
 
 def index(request):
@@ -16,8 +18,12 @@ def races_list(request, raceday_id):
 def race_detail(request, race_id):
 	race = get_object_or_404(Race, pk=race_id)
 	entries = get_list_or_404(Entry, race=race_id)
-	scores = calculate_scores(entries)
-	return render(request, 'dd_app/detail.html', 
-		{'race': race, 'scores': scores})	
+	entries_with_scores = calculate_scores(entries)
+	table = EntryTable(entries_with_scores)
+	RequestConfig(request).configure(table)
+	return render(request, 'dd_app/detail.html', {'table': table, 'race': race})
+
+	# return render(request, 'dd_app/detail.html', 
+	# 	{'race': race, 'scores': scores})	
 
 

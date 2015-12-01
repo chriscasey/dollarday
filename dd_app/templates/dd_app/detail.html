@@ -7,27 +7,7 @@
 <hr>
 <h1>Race {{race.race_number}}</h1>
 
-<!-- <table class="table table-striped table-condensed">
-    <th>entry num</th>
-    <th>horse</th>
-    <th>score</th>
-    <th>highest bsf</th>
-    <th>avg earnings</th>
-    <th>avg speed</th>
-    <th>lifetime win %</th>
-	{% for entry in scores %}
-	    <tr>
-	    	<td>{{ entry.entry_num }}</td>
-	    	<td>{{ entry.horse }}</td>
-	    	<td>{{ entry.score }}</td>
-	    	<td>{{ entry.highest_bsf }}</td>
-	    	<td>{{ entry.avg_earnings }}</td>
-	    	<td>{{ entry.avg_speed }}</td>
-	    	<td>{{ entry.lifetime_win_perc }}</td>
-	    </tr>
-	{% endfor %}
-</table> -->
-<div>{% render_table table %}</div>
+{% render_table table %}
 
 {% endblock %}
 

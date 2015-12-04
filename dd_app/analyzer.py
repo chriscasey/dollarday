@@ -1,19 +1,24 @@
 from .models import BSF, Entry
+import numpy as np
+
+BSF_RANK_WEIGHT=4
+LIFETIME_EARNING_RANK_WEIGHT=4
+WIN_PERC_RANK_WEIGHT=2
 
 def calculate_scores(entries):
 	entry_dict = dict((entry.entry_num, entry) for entry in entries)
 
 	bsf_rank_scores = calculate_bsf_rank_scores(entry_dict)
 	for bsf_rank in bsf_rank_scores:
-		entry_dict[bsf_rank[0]].score = bsf_rank[1]*4
+		entry_dict[bsf_rank[0]].score = bsf_rank[1]*BSF_RANK_WEIGHT
 
 	lifetime_earning_scores = calculate_lifetime_earning_rank_scores(entry_dict)
 	for earning_score in lifetime_earning_scores:
-		entry_dict[earning_score[0]].score += earning_score[1]*4	
+		entry_dict[earning_score[0]].score += earning_score[1]*LIFETIME_EARNING_RANK_WEIGHT	
 	
 	win_perc_rank_scores = calculate_lifetime_winning_perc_rank_scores(entry_dict)
 	for win_perc_score in win_perc_rank_scores:
-		entry_dict[win_perc_score[0]].score += win_perc_score[1]*2		
+		entry_dict[win_perc_score[0]].score += win_perc_score[1]*WIN_PERC_RANK_WEIGHT		
 
 	return sorted(entry_dict.values(), key=lambda entry: entry.score, reverse=True)
 
@@ -80,7 +85,12 @@ def determine_rank_scores(items):
 			result.append( (item[0], curr_score) )
 			consecutive_dups = 0
 		prev = item[1]	
-	return result			
+	return result	
+
+
+def compute_spread_data(items):
+	scores = sorted([item.score for item in items ])
+	return np.mean(scores), np.std(scores), np.var(scores)		
 
 
 

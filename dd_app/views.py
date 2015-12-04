@@ -1,9 +1,10 @@
 from django.shortcuts import get_object_or_404, get_list_or_404, render
-from django_tables2   import RequestConfig
-
+from django_tables2 import RequestConfig
+from django.http import JsonResponse
+import math
 
 from .models import Raceday, Race, Entry, EntryTable
-from analyzer import calculate_scores
+from analyzer import calculate_scores, compute_spread_data
 
 def index(request):
 	latest_raceday_list = Raceday.objects.order_by('-date')[:5]
@@ -12,18 +13,30 @@ def index(request):
 
 def races_list(request, raceday_id):
 	races_list = get_list_or_404(Race, day=raceday_id)
-	return render(request, 'dd_app/race_list.html', {'races_list':races_list})
+	raceday = get_object_or_404(Raceday, pk=raceday_id)
+	return render(request, 'dd_app/race_list.html', {'raceday':raceday, 'races_list': races_list})
 
 
 def race_detail(request, race_id):
 	race = get_object_or_404(Race, pk=race_id)
 	entries = get_list_or_404(Entry, race=race_id)
 	entries_with_scores = calculate_scores(entries)
+	mean, stdev, variance = compute_spread_data(entries_with_scores)
 	table = EntryTable(entries_with_scores)
 	RequestConfig(request).configure(table)
-	return render(request, 'dd_app/detail.html', {'table': table, 'race': race})
+	return render(request, 'dd_app/detail.html', {'table': table, 'race': race, 
+		'mean': mean, 'stdev':stdev, 'variance':variance})
 
-	# return render(request, 'dd_app/detail.html', 
-	# 	{'race': race, 'scores': scores})	
+def score_pie_chart(request, race_id):
+	race = get_object_or_404(Race, pk=race_id)
+	entries = get_list_or_404(Entry, race=race.id)
+	entries_with_scores = calculate_scores(entries)
+	sum_of_scores = float(sum(entry.score for entry in entries_with_scores))
+	data = []
+	for entry in entries_with_scores:
+		perc = math.floor(float(entry.score/sum_of_scores)*100)
+		horse = ' ('+str(entry.entry_num)+') '+entry.horse.name+' '+str(perc)+'%'
+		data.append({'horse': horse, 'score': entry.score})
+	return JsonResponse(data, safe=False)	
 
 

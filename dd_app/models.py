@@ -32,7 +32,7 @@ class Entry(models.Model):
 	score_stddev = models.FloatField(default=0, verbose_name="SD")
 
 	highest_bsf = models.IntegerField(default=0, verbose_name="Highest BSF")
-	avg_earnings = models.FloatField(default=0, verbose_name="Avg Earnings")
+	avg_earnings = models.FloatField(default=0, verbose_name="Avg $$$")
 	avg_speed = models.FloatField(default=-1, verbose_name="Avg Speed")
 	lifetime_win_perc = models.FloatField(default=0, verbose_name="Lifetime Win %")
 

@@ -58,7 +58,7 @@ function createDistributionChart(raceId) {
 	// line chart based on http://bl.ocks.org/mbostock/3883245
 	var margin = {
 	        top: 20,
-	        right: 20,
+	        right: 50,
 	        bottom: 30,
 	        left: 50
 	    },

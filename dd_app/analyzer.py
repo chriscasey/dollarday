@@ -90,7 +90,28 @@ def determine_rank_scores(items):
 
 def compute_spread_data(items):
 	scores = sorted([item.score for item in items ])
-	return np.mean(scores), np.std(scores), np.var(scores)		
+	return np.mean(scores), np.std(scores), np.var(scores)
+
+def compute_mean_deviation(mean, items):
+	distances_from_mean = []
+	for item in items:
+		dfm = 0
+		if item.score > mean:
+			dfm = item.score-mean
+		else:
+			dfm = mean-item.score	
+		distances_from_mean.append(dfm)
+	return np.mean(distances_from_mean)	
+
+def compute_distance_scores(entries, mean, stddev, mean_dev):
+	for entry in entries:
+		entry.score_stddev = round((entry.score/stddev),2)
+		if entry.score < mean:
+			entry.score_stddev = entry.score_stddev*-1
+		entry.score_dfm = round((entry.score/mean_dev),2)
+		if entry.score < mean:
+			entry.score_dfm = entry.score_dfm*-1
+	return entries			
 
 
 

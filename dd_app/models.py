@@ -28,6 +28,9 @@ class Entry(models.Model):
 	entry_num = models.IntegerField(default=0, verbose_name="Entry")
 	horse = models.ForeignKey(Horse, null=False, verbose_name="Horse")
 	score = models.IntegerField(default=0, verbose_name="Score")
+	score_dfm = models.FloatField(default=0, verbose_name="DFM")
+	score_stddev = models.FloatField(default=0, verbose_name="SD")
+
 	highest_bsf = models.IntegerField(default=0, verbose_name="Highest BSF")
 	avg_earnings = models.FloatField(default=0, verbose_name="Avg Earnings")
 	avg_speed = models.FloatField(default=-1, verbose_name="Avg Speed")
@@ -48,8 +51,8 @@ class BSF(models.Model):
 class EntryTable(tables.Table):
 	class Meta:
 		model = Entry
-		fields = ("entry_num", "horse", "score", "highest_bsf", "avg_earnings", "avg_speed", "lifetime_win_perc")	
-		sequence = ("entry_num", "horse", "score", "highest_bsf", "avg_earnings", "avg_speed", "lifetime_win_perc")	
+		fields = ("entry_num", "horse", "score", "score_stddev", "score_dfm", "highest_bsf", "avg_earnings", "avg_speed", "lifetime_win_perc")	
+		sequence = ("entry_num", "horse", "score", "score_stddev", "score_dfm", "highest_bsf", "avg_earnings", "avg_speed", "lifetime_win_perc")	
 		attrs = {'class': 'table table-striped table-condensed'}	
 
 

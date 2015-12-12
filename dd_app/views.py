@@ -43,4 +43,14 @@ def score_pie_chart(request, race_id):
 		data.append({'horse': horse, 'score': entry.score})
 	return JsonResponse(data, safe=False)	
 
+def scatter_plot_graph(request, race_id):
+	race = get_object_or_404(Race, pk=race_id)
+	entries = get_list_or_404(Entry, race=race.id)
+	entries_with_scores = calculate_scores(entries)
+	data = []
+	for entry in entries_with_scores:
+		horse = ' ('+str(entry.entry_num)+') '+entry.horse.name
+		data.append({'horse':horse, 'score':entry.score})	
+	return JsonResponse(data, safe=False)
+
 

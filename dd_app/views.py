@@ -4,8 +4,7 @@ from django.http import JsonResponse
 import math
 
 from .models import Raceday, Race, Entry, EntryTable
-from analyzer import calculate_scores, compute_spread_data, compute_mean_deviation, compute_distance_scores
-
+from analyzer import *
 def index(request):
 	latest_raceday_list = Raceday.objects.order_by('-date')[:5]
 	context = {'latest_raceday_list': latest_raceday_list}
@@ -24,10 +23,12 @@ def race_detail(request, race_id):
 	mean, stdev, variance = compute_spread_data(entries_with_scores)
 	mean_dev = compute_mean_deviation(mean, entries_with_scores)
 	entries_with_dist_data = compute_distance_scores(entries_with_scores, mean, stdev, mean_dev)
+	min_score, max_score = compute_min_max(len(entries_with_dist_data))
 	table = EntryTable(entries_with_scores)
 	RequestConfig(request).configure(table)
 	return render(request, 'dd_app/detail.html', {'table': table, 'race': race, 
-		'mean': mean, 'stdev':stdev, 'variance':variance, 'mean_dev': mean_dev})
+		'mean': mean, 'stdev':stdev, 'variance':variance, 'mean_dev': mean_dev, 
+		'min_score':min_score, 'max_score':max_score})
 
 def score_pie_chart(request, race_id):
 	race = get_object_or_404(Race, pk=race_id)

@@ -1,0 +1,1 @@
+web: gunicorn dollarday.wsgi --log-file -

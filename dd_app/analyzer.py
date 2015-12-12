@@ -111,7 +111,12 @@ def compute_distance_scores(entries, mean, stddev, mean_dev):
 		entry.score_dfm = round((entry.score/mean_dev),2)
 		if entry.score < mean:
 			entry.score_dfm = entry.score_dfm*-1
-	return entries			
+	return entries	
+
+def compute_min_max(entry_count):
+	min = BSF_RANK_WEIGHT+LIFETIME_EARNING_RANK_WEIGHT+WIN_PERC_RANK_WEIGHT	
+	max = (entry_count*BSF_RANK_WEIGHT)+(entry_count*LIFETIME_EARNING_RANK_WEIGHT)+(entry_count*WIN_PERC_RANK_WEIGHT)
+	return min, max		
 
 
 

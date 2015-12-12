@@ -116,7 +116,12 @@ def compute_distance_scores(entries, mean, stddev, mean_dev):
 def compute_min_max(entry_count):
 	min = BSF_RANK_WEIGHT+LIFETIME_EARNING_RANK_WEIGHT+WIN_PERC_RANK_WEIGHT	
 	max = (entry_count*BSF_RANK_WEIGHT)+(entry_count*LIFETIME_EARNING_RANK_WEIGHT)+(entry_count*WIN_PERC_RANK_WEIGHT)
-	return min, max		
+	return min, max	
+
+def compute_score_perc(entries, max_score):
+	for entry in entries:
+		entry.score_perc = round((float(entry.score)/max_score)*100, 2)
+	return entries	
 
 
 

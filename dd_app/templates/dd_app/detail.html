@@ -37,13 +37,7 @@
 	    	<tr><td><b>stdev:</b> {{stdev}}</td></tr>
 	    </table>
 	</div>
-</div>	
-		
-<!-- <div class="row">
-	<div class="col-md-12">
-		{% render_table table %}
-	</div>
-</div> -->	
+</div>
 
 <div class="row">
   	<div class="col-md-6" id="pie_chart">
@@ -51,6 +45,12 @@
   	</div>
   	<div class="col-md-6" id="distribution_chart">
 		<script type="text/javascript">createDistributionChart({{race.id}})</script>
+	</div>
+</div>
+
+<div class="row">
+	<div class="col-md-6" id="pie_chart">
+		<script type="text/javascript">createPercentageChart({{entry}}, {{max_score}})</script>
 	</div>
 </div>
 {% endblock %}

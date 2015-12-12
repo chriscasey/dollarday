@@ -24,10 +24,11 @@ def race_detail(request, race_id):
 	mean_dev = compute_mean_deviation(mean, entries_with_scores)
 	entries_with_dist_data = compute_distance_scores(entries_with_scores, mean, stdev, mean_dev)
 	min_score, max_score = compute_min_max(len(entries_with_dist_data))
-	table = EntryTable(entries_with_scores)
+	entries_with_perc_data = compute_score_perc(entries_with_dist_data, max_score)
+	table = EntryTable(entries_with_perc_data)
 	RequestConfig(request).configure(table)
-	return render(request, 'dd_app/detail.html', {'table': table, 'race': race, 
-		'mean': mean, 'stdev':stdev, 'variance':variance, 'mean_dev': mean_dev, 
+	return render(request, 'dd_app/detail.html', {'table': table, 'race': race, 'mean': mean, 
+		'stdev':stdev, 'variance':variance, 'mean_dev': mean_dev, 
 		'min_score':min_score, 'max_score':max_score})
 
 def score_pie_chart(request, race_id):

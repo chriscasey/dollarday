@@ -101,7 +101,7 @@ def compute_mean_deviation(mean, items):
 		else:
 			dfm = mean-item.score	
 		distances_from_mean.append(dfm)
-	return np.mean(distances_from_mean)	
+	return round(np.mean(distances_from_mean), 2)
 
 def compute_distance_scores(entries, mean, stddev, mean_dev):
 	for entry in entries:

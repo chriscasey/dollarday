@@ -171,7 +171,7 @@ var x = d3.scale.linear()
     .range([0, width]);
 
 var y = d3.scale.linear()
-    .domain([0,10])
+    .domain([0,12])
     .range([height, 0]);
 
 var color = d3.scale.category10();
@@ -193,7 +193,6 @@ var svg = d3.select("#scatterplot_graph").append("svg")
 d3.json("/race/"+raceId+"/scatter_plot_graph", function(error, data) {
 
   x.domain(d3.extent(data, function(d) { return d.score; })).nice();
-  // y.domain(d3.extent(data, function(d) { return d.num; })).nice();
 
   svg.append("g")
       .attr("class", "x axis")

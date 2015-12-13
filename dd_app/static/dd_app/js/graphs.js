@@ -192,7 +192,7 @@ var svg = d3.select("#scatterplot_graph").append("svg")
 d3.json("/race/"+raceId+"/scatter_plot_graph", function(error, data) {
 
   x.domain(d3.extent(data, function(d) { return d.score; })).nice();
-  y.domain(d3.extent(data, function(d) { return 1; })).nice();
+  y.domain(d3.extent(data, function(d) { return d.num; })).nice();
 
   svg.append("g")
       .attr("class", "x axis")
@@ -211,7 +211,7 @@ d3.json("/race/"+raceId+"/scatter_plot_graph", function(error, data) {
       .attr("class", "dot")
       .attr("r", 6.5)
       .attr("cx", function(d) { return x(d.score); })
-      .attr("cy", function(d) { return y(1); })
+      .attr("cy", function(d) { return y(d.num); })
       .style("fill", function(d) { return color(d.horse); });
 
   var legend = svg.selectAll(".legend")

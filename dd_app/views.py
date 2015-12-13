@@ -50,7 +50,7 @@ def scatter_plot_graph(request, race_id):
 	data = []
 	for entry in entries_with_scores:
 		horse = ' ('+str(entry.entry_num)+') '+entry.horse.name
-		data.append({'horse':horse, 'score':entry.score})	
+		data.append({'horse':horse, 'score':entry.score, 'num':entry.entry_num})	
 	return JsonResponse(data, safe=False)
 
 

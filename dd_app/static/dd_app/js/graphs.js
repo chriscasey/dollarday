@@ -192,7 +192,7 @@ var svg = d3.select("#scatterplot_graph").append("svg")
 d3.json("/race/"+raceId+"/scatter_plot_graph", function(error, data) {
 
   x.domain(d3.extent(data, function(d) { return d.score; })).nice();
-  y.domain(d3.extent(data, function(d) { return d.num; })).nice();
+  y.domain(d3.extent(data, function(d) { return d.num+10; })).nice();
 
   svg.append("g")
       .attr("class", "x axis")

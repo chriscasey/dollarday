@@ -19,3 +19,7 @@
 .arc path {
   stroke: #fff;
 }
+
+.dot {
+  stroke: #000;
+}

@@ -221,7 +221,7 @@ d3.json("/race/"+raceId+"/scatter_plot_graph", function(error, data) {
       .attr("transform", function(d, i) { return "translate(0," + i * 20 + ")"; });
 
   legend.append("rect")
-      .attr("x", width - 18)
+      .attr("x", width)
       .attr("width", 18)
       .attr("height", 18)
       .style("fill", color);

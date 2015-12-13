@@ -48,9 +48,16 @@ def scatter_plot_graph(request, race_id):
 	entries = get_list_or_404(Entry, race=race.id)
 	entries_with_scores = calculate_scores(entries)
 	data = []
+	prev_score = 0
+	y_val = 1
 	for entry in entries_with_scores:
 		horse = ' ('+str(entry.entry_num)+') '+entry.horse.name
-		data.append({'horse':horse, 'score':entry.score, 'num':entry.entry_num})	
+		if entry.score == prev_score:
+			y_val += 1
+		else:
+			y_val = 1	
+		data.append({'horse':horse, 'score':entry.score, 'num':y_val})
+		prev_score = entry.score	
 	return JsonResponse(data, safe=False)
 
 

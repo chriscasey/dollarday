@@ -50,3 +50,11 @@
   fill: none;
   stroke: #000;
 }
+
+.bar {
+  fill: steelblue;
+}
+
+.bar:hover {
+  fill: brown;
+}

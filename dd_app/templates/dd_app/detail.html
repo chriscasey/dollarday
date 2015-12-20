@@ -11,6 +11,7 @@
 <script src = {% static "dd_app/js/d3.min.js" %}> </script>
 <script src = {% static "dd_app/js/graphs.js" %}> </script>
 <script src = {% static "dd_app/js/box.js" %}> </script>
+<script src = {% static "dd_app/js/lifetime_win_bar.js" %}> </script>
 
 <br/>
 <ol class="breadcrumb">
@@ -50,12 +51,12 @@
 </div>
 
 <div class="row">
+  	<div class="col-md-6" id="lifetime_win_bar_chart">
+  		<script type="text/javascript">createLifetimeWinBar({{race.id}})</script>
+  	</div>
   	<div class="col-md-6" id="pie_chart">
   		<script type="text/javascript">createPieChart({{race.id}})</script>
   	</div>
-<!-- 	<div class="col-md-6" id="scatterplot_graph">
-		<script type="text/javascript">createScatterplot({{race.id}})</script>
-	</div> -->
 </div>
 
 <div class="row">

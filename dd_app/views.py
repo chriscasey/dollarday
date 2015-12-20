@@ -73,5 +73,18 @@ def box_plot_chart(request, race_id):
 		data.append(e)
 	return JsonResponse(data, safe=False)	
 
+def lifetime_win_bar_chart(request, race_id):
+	data = []
+	race = get_object_or_404(Race, pk=race_id)
+	entries = get_list_or_404(Entry, race=race.id)
+	data = []
+	for entry in entries:
+		data.append({'entry': entry.entry_num, 'frequency': entry.lifetime_win_perc})
+		print entry.lifetime_win_perc
+	return JsonResponse(data, safe=False) 
+
+
+
+
 
 

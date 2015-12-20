@@ -60,4 +60,18 @@ def scatter_plot_graph(request, race_id):
 		prev_score = entry.score	
 	return JsonResponse(data, safe=False)
 
+def box_plot_chart(request, race_id):
+	race = get_object_or_404(Race, pk=race_id)
+	entries = get_list_or_404(Entry, race=race.id)
+	entries_with_scores = calculate_scores(entries)
+	data = []
+	for entry in entries_with_scores:
+		e = {'entry_num': entry.entry_num}
+		bsf_items = get_list_or_404(BSF, entry=entry.id)
+		bsf_scores = [s.value for s in bsf_items]
+		e['bsf_scores'] = bsf_scores 
+		data.append(e)
+	return JsonResponse(data, safe=False)	
+
+
 

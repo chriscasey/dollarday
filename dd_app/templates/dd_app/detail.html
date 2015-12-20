@@ -10,6 +10,7 @@
 <link rel="stylesheet" type="text/css" href="{% static "dd_app/css/main.css" %}" />
 <script src = {% static "dd_app/js/d3.min.js" %}> </script>
 <script src = {% static "dd_app/js/graphs.js" %}> </script>
+<script src = {% static "dd_app/js/box.js" %}> </script>
 
 <br/>
 <ol class="breadcrumb">
@@ -40,15 +41,21 @@
 </div>
 
 <div class="row">
-  	<div class="col-md-6" id="pie_chart">
-  		<script type="text/javascript">createPieChart({{race.id}})</script>
-  	</div>
-<!--   	<div class="col-md-6" id="distribution_chart">
-		<script type="text/javascript">createDistributionChart({{race.id}})</script>
-	</div> -->
+	<div class="col-md-6" id="box_plot_chart">
+		<script type="text/javascript">createBoxPlot({{race.id}})</script>
+	</div>
 	<div class="col-md-6" id="scatterplot_graph">
 		<script type="text/javascript">createScatterplot({{race.id}})</script>
 	</div>
+</div>
+
+<div class="row">
+  	<div class="col-md-6" id="pie_chart">
+  		<script type="text/javascript">createPieChart({{race.id}})</script>
+  	</div>
+<!-- 	<div class="col-md-6" id="scatterplot_graph">
+		<script type="text/javascript">createScatterplot({{race.id}})</script>
+	</div> -->
 </div>
 
 <div class="row">

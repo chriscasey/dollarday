@@ -40,7 +40,7 @@
 	    </table>
 	</div>
 </div>
-
+<hr>
 <div class="row">
 	<div class="col-md-6" id="box_plot_chart">
 		<script type="text/javascript">createBoxPlot({{race.id}})</script>
@@ -49,19 +49,22 @@
 		<script type="text/javascript">createScatterplot({{race.id}})</script>
 	</div>
 </div>
-
+<hr>
 <div class="row">
   	<div class="col-md-6" id="lifetime_win_bar_chart">
   		<script type="text/javascript">createLifetimeWinBar({{race.id}})</script>
   	</div>
-  	<div class="col-md-6" id="pie_chart">
-  		<script type="text/javascript">createPieChart({{race.id}})</script>
+  	<div class="col-md-6">
+  		{% render_table win_table %}
   	</div>
 </div>
 
 <div class="row">
-	<div class="col-md-6" id="legend"></div>
+	<div class="col-md-6" id="pie_chart">
+  		<script type="text/javascript">createPieChart({{race.id}})</script>
+  	</div>
 </div>
+
 
 {% endblock %}
 

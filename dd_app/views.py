@@ -3,7 +3,7 @@ from django_tables2 import RequestConfig
 from django.http import JsonResponse
 import math
 
-from .models import Raceday, Race, Entry, EntryTable
+from .models import Raceday, Race, Entry, EntryTable, WinTable
 from analyzer import *
 def index(request):
 	latest_raceday_list = Raceday.objects.order_by('-date')[:5]
@@ -26,8 +26,9 @@ def race_detail(request, race_id):
 	min_score, max_score = compute_min_max(len(entries_with_dist_data))
 	entries_with_perc_data = compute_score_perc(entries_with_dist_data, max_score)
 	table = EntryTable(entries_with_perc_data)
+	win_table = WinTable(entries_with_perc_data)
 	RequestConfig(request).configure(table)
-	return render(request, 'dd_app/detail.html', {'table': table, 'race': race, 'mean': mean, 
+	return render(request, 'dd_app/detail.html', {'table': table, 'win_table':win_table, 'race': race, 'mean': mean, 
 		'stdev':stdev, 'variance':variance, 'mean_dev': mean_dev, 
 		'min_score':min_score, 'max_score':max_score})
 

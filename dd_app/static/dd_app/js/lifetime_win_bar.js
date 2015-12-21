@@ -27,7 +27,6 @@ function createLifetimeWinBar(raceId) {
 
 	d3.json("/race/"+raceId+"/lifetime_win_bar_chart", function(error, data) {
 	  if (error) throw error;
-	  console.log(data);
 
 	  x.domain(data.map(function(d) { return d.entry; }));
 	  y.domain([0, d3.max(data, function(d) { return d.frequency; })]);

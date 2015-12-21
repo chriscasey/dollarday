@@ -35,6 +35,10 @@ class Entry(models.Model):
 	avg_earnings = models.FloatField(default=0, verbose_name="Avg $$$")
 	avg_speed = models.FloatField(default=-1, verbose_name="Avg Speed")
 	lifetime_win_perc = models.FloatField(default=0, verbose_name="Lifetime Win %")
+	lifetime_starts = models.IntegerField(default=0, verbose_name="Lifetime Starts")
+	lifetime_firsts = models.IntegerField(default=0, verbose_name="Lifetime Firsts")
+	lifetime_seconds = models.IntegerField(default=0, verbose_name="Lifetime Seconds")
+	lifetime_thirds = models.IntegerField(default=0, verbose_name="Lifetime Thirds")
 
 	class Meta:
 		ordering = ['entry_num']
@@ -53,6 +57,17 @@ class EntryTable(tables.Table):
 		model = Entry
 		fields = ("entry_num", "horse", "score", "score_perc", "score_stddev", "score_dfm", "highest_bsf", "avg_earnings", "avg_speed", "lifetime_win_perc")	
 		sequence = ("entry_num", "horse", "score", "score_perc", "score_stddev", "score_dfm", "highest_bsf", "avg_earnings", "avg_speed", "lifetime_win_perc")	
-		attrs = {'class': 'table table-striped table-condensed'}	
+		attrs = {'class': 'table table-striped table-condensed'}
+
+class WinTable(tables.Table):
+	class Meta:
+		model = Entry
+		fields = ("entry_num", "lifetime_win_perc", "lifetime_starts", "lifetime_firsts", "lifetime_seconds", "lifetime_thirds")	
+		sequence = ("entry_num", "lifetime_win_perc", "lifetime_starts", "lifetime_firsts", "lifetime_seconds", "lifetime_thirds")		
+		attrs = {'class': 'table table-striped table-condensed'}
+
+
+
+
 
 

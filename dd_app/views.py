@@ -78,8 +78,9 @@ def lifetime_win_bar_chart(request, race_id):
 	data = []
 	race = get_object_or_404(Race, pk=race_id)
 	entries = get_list_or_404(Entry, race=race.id)
+	entries_with_scores = calculate_scores(entries)
 	data = []
-	for entry in entries:
+	for entry in entries_with_scores:
 		data.append({'entry': entry.entry_num, 'frequency': entry.lifetime_win_perc})
 	return JsonResponse(data, safe=False) 
 

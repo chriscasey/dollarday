@@ -20,4 +20,6 @@ urlpatterns = [
 	url(r'^race/(?P<race_id>[0-9]+)/box_plot_chart', views.box_plot_chart, name='box_plot_chart'),
 	# ex: /race/5/lifetime_win_bar_chart
 	url(r'^race/(?P<race_id>[0-9]+)/lifetime_win_bar_chart', views.lifetime_win_bar_chart, name='lifetime_win_bar_chart'),
+	# ex: /race/5/lifetime_win_grouped
+	url(r'^race/(?P<race_id>[0-9]+)/lifetime_win_grouped', views.lifetime_win_grouped, name='lifetime_win_grouped'),
 ]

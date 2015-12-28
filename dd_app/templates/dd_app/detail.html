@@ -12,6 +12,7 @@
 <script src = {% static "dd_app/js/graphs.js" %}> </script>
 <script src = {% static "dd_app/js/box.js" %}> </script>
 <script src = {% static "dd_app/js/lifetime_win_bar.js" %}> </script>
+<script src = {% static "dd_app/js/lifetime_win_grouped.js" %}> </script>
 
 <br/>
 <ol class="breadcrumb">
@@ -51,8 +52,11 @@
 </div>
 <hr>
 <div class="row">
-  	<div class="col-md-6" id="lifetime_win_bar_chart">
+<!--   	<div class="col-md-6" id="lifetime_win_bar_chart">
   		<script type="text/javascript">createLifetimeWinBar({{race.id}})</script>
+  	</div> -->
+  	<div class="col-md-6" id="lifetime_win_grouped_bar_chart">
+  		<script type="text/javascript">createLifetimeWinGroupBar({{race.id}})</script>
   	</div>
   	<div class="col-md-6">
   		{% render_table win_table %}
@@ -60,6 +64,9 @@
 </div>
 
 <div class="row">
+  	<div class="col-md-6" id="lifetime_win_bar_chart">
+  		<script type="text/javascript">createLifetimeWinBar({{race.id}})</script>
+  	</div>
 	<div class="col-md-6" id="pie_chart">
   		<script type="text/javascript">createPieChart({{race.id}})</script>
   	</div>

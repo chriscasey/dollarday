@@ -28,6 +28,10 @@ def calculate_scores(entries):
 def calculate_lifetime_winning_perc_rank_scores(entry_dict):
 	winning_perc_by_entry = []
 	for entry_num, entry in entry_dict.iteritems():
+		if entry.lifetime_win_perc == 0:
+			lifetime_win_perc = round((entry.lifetime_firsts + entry.lifetime_seconds + entry.lifetime_thirds) / float(entry.lifetime_starts),2)
+			entry.lifetime_win_perc = lifetime_win_perc
+			entry.save()
 		winning_perc_by_entry.append( (entry.entry_num, entry.lifetime_win_perc) )
 	winning_perc_by_entry.sort(key=lambda tup: tup[1], reverse=True)
 	return determine_rank_scores(winning_perc_by_entry)

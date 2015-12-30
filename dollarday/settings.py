@@ -94,7 +94,7 @@ DATABASES = {
         'PORT': '',
     }
 }
-DATABASES['default'] =  dj_database_url.config()
+# DATABASES['default'] =  dj_database_url.config()
 
 
 # Honor the 'X-Forwarded-Proto' header for request.is_secure()

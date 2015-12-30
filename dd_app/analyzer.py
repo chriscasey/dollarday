@@ -30,7 +30,7 @@ def calculate_scores(entries):
 def calculate_lifetime_winning_perc_rank_scores(entry_dict):
 	winning_perc_by_entry = []
 	for entry_num, entry in entry_dict.iteritems():
-		if entry.lifetime_win_perc == 0:
+		if entry.lifetime_win_perc == 0 and entry.lifetime_starts > 0:
 			lifetime_win_perc = round((entry.lifetime_firsts + entry.lifetime_seconds + entry.lifetime_thirds) / float(entry.lifetime_starts),2)
 			entry.lifetime_win_perc = lifetime_win_perc
 			entry.save()
@@ -79,7 +79,6 @@ def scale_scores(items, weight):
 	result = []
 	for item in items:
 		scaled_score = ((((item[1] - min_score) * 10) / old_range) + 0) * weight
-		print item, scaled_score
 		result.append( (item[0], scaled_score) )
 	return result
 

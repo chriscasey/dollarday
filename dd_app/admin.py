@@ -9,7 +9,7 @@ class BSFInline(admin.TabularInline):
 
 class EntryInline(admin.TabularInline):
 	model = Entry
-	fields = ['race', 'entry_num', 'horse', 'highest_bsf', 'avg_earnings', 'lifetime_win_perc']	
+	fields = ['race', 'entry_num', 'horse', 'finish_pos']	
 	extra = 0
 
 class EntryAdmin(admin.ModelAdmin):
@@ -21,7 +21,7 @@ class RaceInline(admin.TabularInline):
 	extra = 0
 
 class RaceAdmin(admin.ModelAdmin):
-	list_filter = ['day']
+	list_filter = ['day__date', 'race_number']
 	inlines = [EntryInline]
 
 class RacedayAdmin(admin.ModelAdmin):

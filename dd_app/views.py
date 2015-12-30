@@ -23,7 +23,7 @@ def race_detail(request, race_id):
 	mean, stdev, variance = compute_spread_data(entries_with_scores)
 	mean_dev = compute_mean_deviation(mean, entries_with_scores)
 	entries_with_dist_data = compute_distance_scores(entries_with_scores, mean, stdev, mean_dev)
-	min_score, max_score = compute_min_max(len(entries_with_dist_data))
+	min_score, max_score = compute_min_max()
 	entries_with_perc_data = compute_score_perc(entries_with_dist_data, max_score)
 	table = EntryTable(entries_with_perc_data)
 	win_table = WinTable(entries_with_perc_data)

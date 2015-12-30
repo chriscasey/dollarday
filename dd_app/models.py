@@ -26,6 +26,7 @@ class Race(models.Model):
 class Entry(models.Model):	
 	race = models.ForeignKey(Race, null=False)
 	entry_num = models.IntegerField(default=0, verbose_name="Entry")
+	finish_pos = models.IntegerField(default=0, verbose_name="Finish Position")
 	horse = models.ForeignKey(Horse, null=False, verbose_name="Horse")
 	score = models.IntegerField(default=0, verbose_name="Score")
 	score_perc = models.FloatField(default=0, verbose_name="Score %")

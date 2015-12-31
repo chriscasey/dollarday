@@ -13,6 +13,7 @@
 <script src = {% static "dd_app/js/box.js" %}> </script>
 <script src = {% static "dd_app/js/lifetime_win_bar.js" %}> </script>
 <script src = {% static "dd_app/js/lifetime_win_grouped.js" %}> </script>
+<script src = {% static "dd_app/js/bullet.js" %}> </script>
 
 <br/>
 <ol class="breadcrumb">
@@ -31,30 +32,37 @@
 		{% render_table table %}
 	</div>
 	<div class="col-md-2">
-	    <h4>Score Summary</h4>
+	    <h4>Race Result</h4>
 	    <table class="table table-striped table-condensed">
-	    	<tr><td><b>min score:</b> {{ min_score }}</td></tr>
-	    	<tr><td><b>max score:</b> {{ max_score }}</td></tr>
-	    	<tr><td><b>mean:</b> {{mean}}</td></tr>
-	    	<tr><td><b>mean deviation:</b> {{mean_dev}}</td></tr>
-	    	<tr><td><b>stdev:</b> {{stdev}}</td></tr>
+	    	<tr><td><b>1st:</b> {{ results.first }}</td></tr>
+	    	<tr><td><b>2nd:</b> {{ results.second }}</td></tr>
+	    	<tr><td><b>3rd:</b> {{ results.third }}</td></tr>
+	    	<tr><td><b>4th:</b> {{ results.fourth }}</td></tr>
 	    </table>
 	</div>
 </div>
 <hr>
 <div class="row">
-	<div class="col-md-6" id="box_plot_chart">
-		<script type="text/javascript">createBoxPlot({{race.id}})</script>
-	</div>
 	<div class="col-md-6" id="scatterplot_graph">
 		<script type="text/javascript">createScatterplot({{race.id}})</script>
+	</div>
+	<div class="col-md-6" id="box_plot_chart">
+		<script type="text/javascript">createBoxPlot({{race.id}})</script>
 	</div>
 </div>
 <hr>
 <div class="row">
-<!--   	<div class="col-md-6" id="lifetime_win_bar_chart">
-  		<script type="text/javascript">createLifetimeWinBar({{race.id}})</script>
-  	</div> -->
+	<h3>lifetime wins</h3>
+  	<div class="col-md-6" id="lifetime_win_bullet_chart">
+  		<script type="text/javascript">createLifetimeWinBulletChart({{race.id}})</script>
+  	</div>
+  	<div class="col-md-6">
+  		{% render_table win_table %}
+  	</div>
+</div>
+
+<hr>
+<div class="row">
   	<div class="col-md-6" id="lifetime_win_grouped_bar_chart">
   		<script type="text/javascript">createLifetimeWinGroupBar({{race.id}})</script>
   	</div>
@@ -63,6 +71,7 @@
   	</div>
 </div>
 
+<hr>
 <div class="row">
   	<div class="col-md-6" id="lifetime_win_bar_chart">
   		<script type="text/javascript">createLifetimeWinBar({{race.id}})</script>

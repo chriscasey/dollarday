@@ -22,4 +22,6 @@ urlpatterns = [
 	url(r'^race/(?P<race_id>[0-9]+)/lifetime_win_bar_chart', views.lifetime_win_bar_chart, name='lifetime_win_bar_chart'),
 	# ex: /race/5/lifetime_win_grouped
 	url(r'^race/(?P<race_id>[0-9]+)/lifetime_win_grouped', views.lifetime_win_grouped, name='lifetime_win_grouped'),
+	# ex: /race/5/lifetime_win_bullet_chart
+	url(r'^race/(?P<race_id>[0-9]+)/lifetime_win_bullet_chart', views.lifetime_win_bullet_chart, name='lifetime_win_bullet_chart'),
 ]

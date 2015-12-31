@@ -23,14 +23,13 @@ def race_detail(request, race_id):
 	mean, stdev, variance = compute_spread_data(entries_with_scores)
 	mean_dev = compute_mean_deviation(mean, entries_with_scores)
 	entries_with_dist_data = compute_distance_scores(entries_with_scores, mean, stdev, mean_dev)
-	min_score, max_score = compute_min_max()
-	entries_with_perc_data = compute_score_perc(entries_with_dist_data, max_score)
-	table = EntryTable(entries_with_perc_data)
-	win_table = WinTable(entries_with_perc_data)
+	max_score = compute_max_score()
+	results = format_results(entries_with_dist_data)
+	table = EntryTable(entries_with_dist_data)
+	win_table = WinTable(entries_with_dist_data)
 	RequestConfig(request).configure(table)
-	return render(request, 'dd_app/detail.html', {'table': table, 'win_table':win_table, 'race': race, 'mean': mean, 
-		'stdev':stdev, 'variance':variance, 'mean_dev': mean_dev, 
-		'min_score':min_score, 'max_score':max_score})
+	return render(request, 'dd_app/detail.html', {'table': table, 'win_table':win_table, 
+		'race': race, 'results': results})
 
 def score_pie_chart(request, race_id):
 	race = get_object_or_404(Race, pk=race_id)
@@ -94,6 +93,21 @@ def lifetime_win_grouped(request, race_id):
 		'lifetime_firsts': entry.lifetime_firsts,
 		'lifetime_seconds': entry.lifetime_seconds,
 		'lifetime_thirds': entry.lifetime_thirds}
+		data.append(row)
+	return JsonResponse(data, safe=False) 
+
+def lifetime_win_bullet_chart(request, race_id):
+	data = []
+	race = get_object_or_404(Race, pk=race_id)
+	entries = get_list_or_404(Entry, race=race.id)
+	for entry in entries:
+		third_place_marker = entry.lifetime_thirds
+		second_place_marker = entry.lifetime_thirds + entry.lifetime_seconds
+		first_place_marker = entry.lifetime_thirds + entry.lifetime_seconds + entry.lifetime_firsts
+		row = {"title": entry.entry_num, "subtitle": entry.horse.name,
+		"ranges":[first_place_marker, entry.lifetime_starts], 
+		"measures":[third_place_marker, second_place_marker, first_place_marker], 
+		"markers":[third_place_marker, second_place_marker, first_place_marker]}
 		data.append(row)
 	return JsonResponse(data, safe=False) 	
 

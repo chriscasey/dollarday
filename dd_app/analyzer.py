@@ -107,15 +107,22 @@ def compute_distance_scores(entries, mean, stddev, mean_dev):
 			entry.score_dfm = entry.score_dfm*-1
 	return entries	
 
-def compute_min_max():
-	min = 0
-	max = (SCORE_RANGE*BSF_RANK_WEIGHT)+(SCORE_RANGE*LIFETIME_EARNING_RANK_WEIGHT)+(SCORE_RANGE*WIN_PERC_RANK_WEIGHT)
-	return min, max	
+def compute_max_score():
+	return (SCORE_RANGE*BSF_RANK_WEIGHT)+(SCORE_RANGE*LIFETIME_EARNING_RANK_WEIGHT)+(SCORE_RANGE*WIN_PERC_RANK_WEIGHT)
 
-def compute_score_perc(entries, max_score):
+
+def format_results(entries):
+	results = {}
 	for entry in entries:
-		entry.score_perc = round((float(entry.score)/max_score)*100, 2)
-	return entries	
+		if entry.finish_pos == 1:
+			results['first'] = entry
+		elif entry.finish_pos == 2:	
+			results['second'] = entry
+		elif entry.finish_pos == 3:	
+			results['third'] = entry
+		elif entry.finish_pos == 4:	
+			results['fourth'] = entry	
+	return results
 
 
 

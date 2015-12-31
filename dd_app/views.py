@@ -116,7 +116,7 @@ def average_earnings_bullet_chart(request, race_id):
 	data = []
 	race = get_object_or_404(Race, pk=race_id)
 	entries = get_list_or_404(Entry, race=race.id)
-	max_avg = 1180
+	max_avg = max(float(entry.lifetime_earnings)/entry.lifetime_starts for entry in entries)
 	for entry in entries:
 		avg_earnings = float(entry.lifetime_earnings)/entry.lifetime_starts
 		row = {"title": entry.entry_num, "subtitle": entry.horse.name,

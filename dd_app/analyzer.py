@@ -86,7 +86,9 @@ def scale_scores(items, weight):
 	old_range = max_score - min_score
 	result = []
 	for item in items:
-		scaled_score = ((((item[1] - min_score) * 10) / old_range) + 0) * weight
+		scaled_score = 0
+		if item[1] > 0 and old_range > 0:
+			scaled_score = ((((item[1] - min_score) * 10) / old_range) + 0) * weight
 		result.append( (item[0], scaled_score) )
 	return result
 

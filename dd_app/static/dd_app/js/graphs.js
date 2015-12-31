@@ -163,7 +163,7 @@ function createDistributionChart(raceId) {
 }
 
 function createScatterplot(raceId) {
-	var margin = {top: 30, right: 30, bottom: 30, left: 40},
+	var margin = {top: 30, right: 50, bottom: 30, left: 40},
     width = 600 - margin.left - margin.right,
     height = 400 - margin.top - margin.bottom;
 

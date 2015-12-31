@@ -3,7 +3,7 @@ from django_tables2 import RequestConfig
 from django.http import JsonResponse
 import math
 
-from .models import Raceday, Race, Entry, EntryTable, WinTable
+from .models import Raceday, Race, Entry, EntryTable, WinTable, EarningsTable
 from analyzer import *
 def index(request):
 	latest_raceday_list = Raceday.objects.order_by('-date')[:5]
@@ -27,9 +27,10 @@ def race_detail(request, race_id):
 	results = format_results(entries_with_dist_data)
 	table = EntryTable(entries_with_dist_data)
 	win_table = WinTable(entries_with_dist_data)
+	earnings_table = EarningsTable(entries_with_dist_data)
 	RequestConfig(request).configure(table)
 	return render(request, 'dd_app/detail.html', {'table': table, 'win_table':win_table, 
-		'race': race, 'results': results})
+		'race': race, 'results': results, 'earnings_table': earnings_table})
 
 def score_pie_chart(request, race_id):
 	race = get_object_or_404(Race, pk=race_id)
@@ -110,6 +111,20 @@ def lifetime_win_bullet_chart(request, race_id):
 		"markers":[third_place_marker, second_place_marker, first_place_marker]}
 		data.append(row)
 	return JsonResponse(data, safe=False) 	
+
+def average_earnings_bullet_chart(request, race_id):
+	data = []
+	race = get_object_or_404(Race, pk=race_id)
+	entries = get_list_or_404(Entry, race=race.id)
+	max_avg = 1180
+	for entry in entries:
+		avg_earnings = float(entry.lifetime_earnings)/entry.lifetime_starts
+		row = {"title": entry.entry_num, "subtitle": entry.horse.name,
+		"ranges":[max_avg], 
+		"measures":[avg_earnings], 
+		"markers":[avg_earnings]}
+		data.append(row)
+	return JsonResponse(data, safe=False)	
 
 
 

@@ -8,6 +8,10 @@ WIN_PERC_RANK_WEIGHT=2
 SCORE_RANGE=10
 
 def calculate_scores(entries):
+	for entry in entries:
+		if entry.lifetime_earnings > 0 and entry.lifetime_starts > 0:
+			entry.avg_earnings = round((float(entry.lifetime_earnings)/entry.lifetime_starts),2)
+
 	entry_dict = dict((entry.entry_num, entry) for entry in entries)
 
 	bsf_rank_scores = calculate_bsf_rank_scores(entry_dict)
@@ -20,7 +24,11 @@ def calculate_scores(entries):
 	
 	win_perc_rank_scores = calculate_lifetime_winning_perc_rank_scores(entry_dict)
 	for win_perc_score in win_perc_rank_scores:
-		entry_dict[win_perc_score[0]].score += win_perc_score[1]		
+		entry_dict[win_perc_score[0]].score += win_perc_score[1]
+
+    # find a better place to do this
+	for k, v in entry_dict.iteritems():
+		v.score = round(v.score, 2)			
 
 	return sorted(entry_dict.values(), key=lambda entry: entry.score, reverse=True)
 

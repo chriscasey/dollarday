@@ -12,7 +12,7 @@ function createLifetimeWinGroupBar(raceId) {
 	    .range([height, 0]);
 
 	var color = d3.scale.ordinal()
-	    .range(["#98abc5", "#7b6888", "#a05d56", "#ff8c00"]);
+	    .range(["#98abc5", "#ff8c00", "#a05d56", "#7b6888"]);
 
 	var xAxis = d3.svg.axis()
 	    .scale(x0)

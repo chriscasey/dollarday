@@ -65,8 +65,8 @@
 .bullet .range.s0 { fill: #eee; }
 .bullet .range.s1 { fill: #ddd; }
 .bullet .range.s2 { fill: #ccc; }
-.bullet .measure.s0 { fill: #7b6888 }
-.bullet .measure.s1 { fill: steelblue; }
-.bullet .measure.s2 { fill: lightsteelblue; }
+.bullet .measure.s0 { fill: #ff8c00 }
+.bullet .measure.s1 { fill: #a05d56; }
+.bullet .measure.s2 { fill: #7b6888; }
 .bullet .title { font-size: 14px; font-weight: bold; }
 .bullet .subtitle { fill: #999; }

@@ -80,7 +80,7 @@ function createBoxPlot(raceId) {
 			  .attr("y", 6)
 			  .attr("dy", ".71em")
 			  .style("text-anchor", "end")
-			  .style("font-size", "16px") 
+			  .style("font-size", "12px") 
 			  .text("Beyer Speed Figure");		
 		
 		// draw x axis	
@@ -88,13 +88,13 @@ function createBoxPlot(raceId) {
 	      .attr("class", "x axis")
 	      .attr("transform", "translate(0," + (height  + margin.top + 10) + ")")
 	      .call(xAxis)
-      .append("text")
-        .attr("class", "label")
-        .attr("x", width)
-        .attr("y", -6)
-        .style("text-anchor", "end")
-        .style("font-size", "11px")
-        .text("Entry number");
+		  .append("text")             // text label for the x axis
+	        .attr("x", (width / 2) )
+	        .attr("y",  20 )
+			.attr("dy", ".71em")
+	        .style("text-anchor", "middle")
+			.style("font-size", "12px") 
+	        .text("Entry #"); 
 	});
 
 	// Returns a function to compute the interquartile range.

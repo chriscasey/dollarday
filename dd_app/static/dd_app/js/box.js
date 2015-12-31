@@ -88,13 +88,13 @@ function createBoxPlot(raceId) {
 	      .attr("class", "x axis")
 	      .attr("transform", "translate(0," + (height  + margin.top + 10) + ")")
 	      .call(xAxis)
-		  .append("text")             // text label for the x axis
-	        .attr("x", (width / 2) )
-	        .attr("y",  10 )
-			.attr("dy", ".71em")
-	        .style("text-anchor", "middle")
-			.style("font-size", "16px") 
-	        .text("Entry num"); 
+      .append("text")
+        .attr("class", "label")
+        .attr("x", width)
+        .attr("y", -6)
+        .style("text-anchor", "end")
+        .style("font-size", "11px")
+        .text("Entry number");
 	});
 
 	// Returns a function to compute the interquartile range.

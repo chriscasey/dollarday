@@ -14,7 +14,7 @@ class Raceday(models.Model):
 		ordering = ['-date']
 
 	def __str__(self):
-		return str(self.date)		
+		return str(self.date)			
 
 class Race(models.Model):
 	day = models.ForeignKey(Raceday, null=False)
@@ -46,12 +46,44 @@ class Entry(models.Model):
 		ordering = ['entry_num']
 
 	def __str__(self):
-		return str(str(self.entry_num)+' - '+self.horse.name)
-
+		return str(str(self.entry_num)+' - '+self.horse.name)	
 
 class BSF(models.Model):
 	entry = models.ForeignKey(Entry, null=False)
-	value = models.FloatField(default=-1)	
+	value = models.FloatField(default=-1)
+
+class RaceResultManager(models.Model):
+	def create_result(self, race):
+		result = self.create(race=race)
+		return result
+
+class RaceResult(models.Model):
+	race = models.ForeignKey(Race, null=False)
+	score_win_predicted = models.BooleanField(default=False)
+	score_exa_predicted = models.BooleanField(default=False)
+	score_tri_predicted = models.BooleanField(default=False)
+	score_sf_predicted = models.BooleanField(default=False)
+	avg_earning_win_predicted = models.BooleanField(default=False)
+	avg_earning_exa_predicted = models.BooleanField(default=False)
+	avg_earning_tri_predicted = models.BooleanField(default=False)
+	avg_earning_sf_predicted = models.BooleanField(default=False)
+	win_perc_win_predicted = models.BooleanField(default=False)
+	win_perc_exa_predicted = models.BooleanField(default=False)
+	win_perc_tri_predicted = models.BooleanField(default=False)
+	win_perc_sf_predicted = models.BooleanField(default=False)
+	avg_speed_win_predicted = models.BooleanField(default=False)
+	avg_speed_exa_predicted = models.BooleanField(default=False)
+	avg_speed_tri_predicted = models.BooleanField(default=False)
+	avg_speed_sf_predicted = models.BooleanField(default=False)
+
+	@classmethod
+	def create_result(cls, race):
+		result = cls(race=race)
+		return result
+
+	def __str__(self):
+		return str(str(self.race)+' - '+str(self.score_win_predicted))	
+
 
 
 class EntryTable(tables.Table):

@@ -1,6 +1,7 @@
 from django.conf.urls import url
 
 from . import views
+from . import stats
 
 urlpatterns = [
 	url(r'^$', views.index, name='index'),
@@ -26,4 +27,10 @@ urlpatterns = [
 	url(r'^race/(?P<race_id>[0-9]+)/lifetime_win_bullet_chart', views.lifetime_win_bullet_chart, name='lifetime_win_bullet_chart'),
 	# ex: /race/5/average_earnings_bullet_chart
 	url(r'^race/(?P<race_id>[0-9]+)/average_earnings_bullet_chart', views.average_earnings_bullet_chart, name='average_earnings_bullet_chart'),
+
+	# STATS
+	# ex: /stats
+	url(r'^stats', stats.results_all, name='results_all'),
+	# ex: /stats/2015/
+	url(r'^stats/(?P<year>[0-9]+)/$', stats.results_by_year, name='results_by_year'),
 ]

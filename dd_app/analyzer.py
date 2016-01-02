@@ -30,7 +30,10 @@ def calculate_scores(entries):
 	for k, v in entry_dict.iteritems():
 		v.score = round(v.score, 2)			
 
-	return sorted(entry_dict.values(), key=lambda entry: entry.score, reverse=True)
+	sorted_entries_with_scores = sorted(entry_dict.values(), key=lambda entry: entry.score, reverse=True)
+	for entry in sorted_entries_with_scores:
+		entry.save()
+	return sorted_entries_with_scores
 
 #######################################
 # Lifetime winning %

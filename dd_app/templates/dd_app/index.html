@@ -2,7 +2,8 @@
 
 {% block content %}
 	<h1>dollarday</h1>
-	<br/>
+	<h4><a href="{% url 'results_all' %}">stats</a></h4>
+	<hr>
 	{% if latest_raceday_list %}
 	    <h3>Available Dates:</h3>
 	    <ul class="list-group">

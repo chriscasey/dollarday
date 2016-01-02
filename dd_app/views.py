@@ -2,9 +2,9 @@ from django.shortcuts import get_object_or_404, get_list_or_404, render
 from django_tables2 import RequestConfig
 from django.http import JsonResponse
 import math
-
 from .models import Raceday, Race, Entry, EntryTable, WinTable, EarningsTable
 from analyzer import *
+
 def index(request):
 	latest_raceday_list = Raceday.objects.order_by('-date')[:5]
 	context = {'latest_raceday_list': latest_raceday_list}

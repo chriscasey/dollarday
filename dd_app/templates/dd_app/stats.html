@@ -1,0 +1,102 @@
+{% extends 'dd_app/base.html' %}
+
+{% block content %}
+<ol class="breadcrumb">
+  <li><a href="/">Home</a></li>
+</ol>
+
+<h1>dollarday stats</h1>
+<hr/>
+
+
+<div class="row">
+	<div class="col-md-3">
+		<h3>dollarday score</h3>
+		<table class="table table-striped table-condensed">
+			<tr>
+				<td>Win %</td>
+				<td>{{ score_win_perc }}</td>
+			</tr>
+			<tr>
+				<td>Exacta %</td>
+				<td>{{ score_exa_perc }}</td>
+			</tr>
+			<tr>
+				<td>Trifecta %</td>
+				<td>{{ score_tri_perc }}</td>
+			</tr>
+			<tr>
+				<td>Superfecta %</td>
+				<td>{{ score_sf_perc }}</td>
+			</tr>
+		</table>
+	</div>
+
+	<div class="col-md-3">
+		<h3>bsf score</h3>
+		<table class="table table-striped table-condensed">
+			<tr>
+				<td>Win %</td>
+				<td>{{ avg_speed_win_perc }}</td>
+			</tr>
+			<tr>
+				<td>Exacta %</td>
+				<td>{{ avg_speed_exa_perc }}</td>
+			</tr>
+			<tr>
+				<td>Trifecta %</td>
+				<td>{{ avg_speed_tri_perc }}</td>
+			</tr>
+			<tr>
+				<td>Superfecta %</td>
+				<td>{{ avg_speed_sf_perc }}</td>
+			</tr>
+		</table>
+	</div>
+
+	<div class="col-md-3">
+		<h3>lifetime win %</h3>
+		<table class="table table-striped table-condensed">
+			<tr>
+				<td>Win %</td>
+				<td>{{ avg_earnings_win_perc }}</td>
+			</tr>
+			<tr>
+				<td>Exacta %</td>
+				<td>{{ avg_earnings_exa_perc }}</td>
+			</tr>
+			<tr>
+				<td>Trifecta %</td>
+				<td>{{ avg_earnings_tri_perc }}</td>
+			</tr>
+			<tr>
+				<td>Superfecta %</td>
+				<td>{{ avg_earnings_sf_perc }}</td>
+			</tr>
+		</table>
+	</div>
+
+	<div class="col-md-3">
+		<h3>avg $ per race</h3>
+		<table class="table table-striped table-condensed">
+			<tr>
+				<td>Win %</td>
+				<td>{{ win_perc_win_perc }}</td>
+			</tr>
+			<tr>
+				<td>Exacta %</td>
+				<td>{{ win_perc_exa_perc }}</td>
+			</tr>
+			<tr>
+				<td>Trifecta %</td>
+				<td>{{ win_perc_tri_perc }}</td>
+			</tr>
+			<tr>
+				<td>Superfecta %</td>
+				<td>{{ win_perc_sf_perc }}</td>
+			</tr>
+		</table>
+	</div>
+
+</div>
+{% endblock %}

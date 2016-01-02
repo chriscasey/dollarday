@@ -110,8 +110,9 @@ def results_by_year(request, year):
 
 
 def compute_race_stats(race):
-	race_result = RaceResult.objects.get(race__id=race.id)
-	if not race_result:
+	try:
+		race_result = RaceResult.objects.get(race__id=race.id)
+	except RaceResult.DoesNotExist:
 		race_result = RaceResult.create_result(race)
 
 	entries = Entry.objects.all().filter(race__id=race.id)

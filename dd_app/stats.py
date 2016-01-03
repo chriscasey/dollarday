@@ -67,24 +67,24 @@ def results_all(request):
 			avg_speed_sf_count += 1							
 
 	result_count = len(result_list)
-	score_win_perc = int(float(score_win_count)/result_count*100)
-	score_exa_perc = int(float(score_exa_count)/result_count*100)
-	score_tri_perc = int(float(score_tri_count)/result_count*100)
-	score_sf_perc = int(float(score_sf_count)/result_count*100)
-	avg_earnings_win_perc = int(float(avg_earning_win_count)/result_count*100)
-	avg_earnings_exa_perc = int(float(avg_earning_exa_count)/result_count*100)
-	avg_earnings_tri_perc = int(float(avg_earning_tri_count)/result_count*100)
-	avg_earnings_sf_perc = int(float(avg_earning_sf_count)/result_count*100)
+	score_win_perc = round((float(score_win_count)/result_count*100),2)
+	score_exa_perc = round((float(score_exa_count)/result_count*100),2)
+	score_tri_perc = round((float(score_tri_count)/result_count*100),2)
+	score_sf_perc = round((float(score_sf_count)/result_count*100),2)
+	avg_earnings_win_perc = round((float(avg_earning_win_count)/result_count*100),2)
+	avg_earnings_exa_perc = round((float(avg_earning_exa_count)/result_count*100),2)
+	avg_earnings_tri_perc = round((float(avg_earning_tri_count)/result_count*100),2)
+	avg_earnings_sf_perc = round((float(avg_earning_sf_count)/result_count*100),2)
 
-	win_perc_win_perc = int(float(win_perc_win_count)/result_count*100)
-	win_perc_exa_perc = int(float(win_perc_exa_count)/result_count*100)
-	win_perc_tri_perc = int(float(win_perc_tri_count)/result_count*100)
-	win_perc_sf_perc = int(float(win_perc_sf_count)/result_count*100)
+	win_perc_win_perc = round((float(win_perc_win_count)/result_count*100),2)
+	win_perc_exa_perc = round((float(win_perc_exa_count)/result_count*100),2)
+	win_perc_tri_perc = round((float(win_perc_tri_count)/result_count*100),2)
+	win_perc_sf_perc = round((float(win_perc_sf_count)/result_count*100),2)
 
-	avg_speed_win_perc = int(float(avg_speed_win_count)/result_count*100)
-	avg_speed_exa_perc = int(float(avg_speed_exa_count)/result_count*100)
-	avg_speed_tri_perc = int(float(avg_speed_tri_count)/result_count*100)
-	avg_speed_sf_perc = int(float(avg_speed_sf_count)/result_count*100)
+	avg_speed_win_perc = round((float(avg_speed_win_count)/result_count*100),2)
+	avg_speed_exa_perc = round((float(avg_speed_exa_count)/result_count*100),2)
+	avg_speed_tri_perc = round((float(avg_speed_tri_count)/result_count*100),2)
+	avg_speed_sf_perc = round((float(avg_speed_sf_count)/result_count*100),2)
 
 	context = {'score_win_perc': score_win_perc,
 	'score_exa_perc': score_exa_perc, 
